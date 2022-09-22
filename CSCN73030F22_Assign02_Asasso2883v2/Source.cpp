@@ -19,6 +19,12 @@ struct STUDENT_DATA {
 	string lastName;
 };
 
+//Define symbols for debug log macro, just outputs to terminal or doesn't base don compiler flag.
+#ifdef _DEBUG
+#define DEBUGLOG(x) std::cout << "DEBUG_LOG: " << x << std::endl;
+#else
+#define DEBUGLOG(x)
+#endif
 
 int main(void) {
 
@@ -31,7 +37,6 @@ int main(void) {
 	while (getline(fileStream, currentStudent)) {
 		STUDENT_DATA newStudent;
 
-
 		char delimiter = ',';	//specify delimiter for substring
 		string newLastName = currentStudent.substr(0, currentStudent.find(delimiter));	//get lastname from line
 		currentStudent.erase(0, (currentStudent.find(delimiter) + 1));	//have to +1 so it gets , as well.
@@ -42,6 +47,9 @@ int main(void) {
 		newFirstName += '\0';
 		newStudent.firstName = newFirstName;
 
+		// Use debug log to only output during debug mode and not release
+		DEBUGLOG("New student = " << newStudent.firstName << " " << newStudent.lastName)
+		
 		studentList.push_back(newStudent);	//add student to stack / vector
 	}
 
