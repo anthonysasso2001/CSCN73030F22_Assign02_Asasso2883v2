@@ -44,7 +44,7 @@ using namespace std;
 
 //Define symbols for debug log macro, just outputs to terminal or doesn't base don compiler flag.
 #ifdef _DEBUG
-	#define DEBUGLOG(x) cout << "DEBUG_LOG: " << x << endl;
+	#define DEBUGLOG(x) std::cout << "DEBUG_LOG: " << x << std::endl;
 #else
 	#define DEBUGLOG(x)
 #endif
